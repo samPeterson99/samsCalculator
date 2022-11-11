@@ -1,14 +1,50 @@
 body {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerSpace {
+    height: 100px;
 }
 
 .calc {
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
+    border: 2px solid red;
+    width: 50%;
+    height: 50%;
+}
+
+.title {
+    color: blue;
+}
+
+.display {
+    background-color: grey;
+    width: 100%;
 }
 
 .row {
     display: flex;
     flex-direction: row;
+    width: 100%;
+}
+
+button {
+    flex: 1 1 auto;
+    width: 25%;
+    height: auto;
+}
+
+#zero {
+    flex: 2 1 auto;
+    width: 50%;
+}
+
+#clear {
+    flex: 2 1 auto;
+    width: 50%;
 }
