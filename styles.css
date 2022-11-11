@@ -27,10 +27,11 @@ body {
 
 .display {
     background-color: grey;
-    width: 100%;
+    width: 95%;
     height: 20%;
     flex: 1 0 auto;
-    margin: 4px 0px;
+    margin: 4px 2px;
+    align-self: center;
 }
 
 .row {

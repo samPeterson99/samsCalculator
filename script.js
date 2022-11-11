@@ -1,3 +1,11 @@
+const buttons = document.querySelectorAll('button');
+buttons.forEach((buttons) => {
+
+    buttons.addEventListener ('click', () =>{
+        console.log(buttons.id);
+    })
+})
+
 
 
 function add(a, b) {
@@ -22,20 +30,23 @@ function divide(a, b) {
     return quot
 }
 
-function operate(a, b, x) {
+//probably want a to pass operate in reduce, so I'm populating to an array
+//answer would become array[0] unless there is a clear
+function operate(a, func, b) {
         let answer = ''
-        switch(a, b, x) {
-            case x = 'a':
+        switch(a, func, b) {
+            case func = 'a':
                 answer = add(a, b);
                 break;
-            case x = 's':
+            case func = 's':
                 answer = subtract(a, b);
                 break;
-            case x = 'd':
+            case func = 'd':
                 answer = divide(a, b);
                 break;
-            case x = 'm':
+            case func = 'm':
                 answer = multiply(a, b);
         }
         return answer
 }
+
