@@ -1,11 +1,21 @@
+const display = document.querySelector('.display');
+display.classList.add('.display')
+const entries = []
+
 const buttons = document.querySelectorAll('button');
 buttons.forEach((buttons) => {
 
     buttons.addEventListener ('click', () =>{
-        console.log(buttons.id);
+        entries.push(buttons.id)
+        let headsUp = entries[entries.length -1]
+        console.log(headsUp)
+        display.textContent = `${headsUp}`
     })
 })
 
+
+//make button log to display, one at a Time
+//make buttons stack unless function hit 
 
 
 function add(a, b) {
