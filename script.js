@@ -21,12 +21,11 @@ buttons.forEach((buttons) => {
         } else if (buttons.id == "back") {
             display.innerHTML.slice(display.innerHTML.lastIndexOf);
         } else if (buttons.id == ".") {
-            display.innerHTML.match('.') ? 
-            display.innerHTML = "OOPS" : 
-            display.innerHTML += buttons.id;
+            display.innerHTML.includes('.') ? display.innerHTML = "OOPS" : display.innerHTML += buttons.id;
         } else if (buttons.id == "equals") {
             entries.push(display.innerHTML)
-            
+            console.log(entries.length)
+            console.log(operate(entries[0], entries[1], entries[2]));
         }
     })
 })
@@ -61,22 +60,23 @@ function divide(a, b) {
 //probably want a to pass operate in reduce, so I'm populating to an array
 //answer would become array[0] unless there is a clear
 function operate(a, func, b) {
-        let answer = ''
+        const answer = ''
         display.innerHTML = ''
         switch(a, func, b) {
-            case func = 'a':
-                answer = add(a, b);
+            case func == 'a':
+                answer.concat(add(a, b));
                 break;
-            case func = 's':
+            case func == 's':
                 answer = subtract(a, b);
                 break;
-            case func = 'd':
+            case func == 'd':
                 answer = divide(a, b);
                 break;
-            case func = 'm':
+            case func == 'm':
                 answer = multiply(a, b);
         }
         display.innerHTML = answer
         console.log(answer)
 }
 
+console.log(operate(1, a, 1))
