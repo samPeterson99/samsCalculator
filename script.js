@@ -1,7 +1,6 @@
 const display = document.querySelector('.display');
 display.classList.add('.display')
-        const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-        const ops = ['a', 's', 'd', 'm']
+const ops = ['a', 's', 'd', 'm']
 const entries = []
 
 const buttons = document.querySelectorAll('button');
@@ -19,13 +18,14 @@ buttons.forEach((buttons) => {
             display.innerHTML = '';
             entries.length = 0;
         } else if (buttons.id == "back") {
-            display.innerHTML.slice(display.innerHTML.lastIndexOf);
+            let currentDisplay = display.innerHTML
+            display.innerHTML = currentDisplay.substring(0,currentDisplay.length -1)
         } else if (buttons.id == ".") {
             display.innerHTML.includes('.') ? display.innerHTML = "OOPS" : display.innerHTML += buttons.id;
         } else if (buttons.id == "equals") {
             entries.push(display.innerHTML)
             console.log(entries.length)
-            console.log(operate(entries[0], entries[1], entries[2]));
+            display.innerHTML = operate.call(parseInt(entries[0]), entries[1], parseInt(entries[2]));
         }
     })
 })
