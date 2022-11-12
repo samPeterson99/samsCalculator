@@ -6,25 +6,29 @@ const entries = []
 const buttons = document.querySelectorAll('button');
 buttons.forEach((buttons) => {
     buttons.addEventListener ('click', () =>{
-        if (!isNaN(buttons.id)) {
+        if (!isNaN(buttons.id) && entries.length == 1) { //Overwrite number
+            console.log('freshnumber')
+            clearAll();
             display.innerHTML += buttons.id;  
-        } else if (ops.includes(buttons.id)) {
-            entries.push(display.innerHTML);
+        } else if (!isNaN(buttons.id)) {
+            display.innerHTML += buttons.id; 
+        } else if (ops.includes(buttons.id)) { //operator (can I make this work like iPhone calculator?)
+            entries[0] = display.innerHTML;
             entries.push(`${buttons.id}`);
+            console.log(entries.length)
             display.innerHTML = '';    
-        } else if (buttons.id == "clear") {
-            display.innerHTML = '';
-            entries.length = 0;
-        } else if (buttons.id == "back") {
-            display.innerHTML = clearDisplay()
-        } else if (buttons.id == ".") {
+        } else if (buttons.id == "clear") { //clear
+            clearAll()
+        } else if (buttons.id == "back") { //backspace
+            display.innerHTML = backspace()
+        } else if (buttons.id == ".") { //decimal
             display.innerHTML.includes('.') ? display.innerHTML = "ERROR!! Too many decimals" : display.innerHTML += buttons.id;
-        } else if (buttons.id == "equals") {
+        } else if (buttons.id == "equals") {// =
             entries.push(display.innerHTML)
             let newDisplay = operate(entries[0], entries[1], entries[2])
-            display.innerHTML = clearDisplay()
+            clearAll()
             display.innerHTML = newDisplay
-            entries.length = 0
+            entries.push(newDisplay)
         }
     })
 })
@@ -52,7 +56,8 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    let quot = a / b
+    let quot
+    b == 0 ? quot = 'DEATH' : quot = a / b;
     return quot
 }
 
@@ -74,7 +79,12 @@ function operate(x, func, y) {
         return answer
 }
 
-function clearDisplay() {
+function backspace() {
     let currentDisplay = display.innerHTML;
     display.innerHTML = currentDisplay.substring(0,currentDisplay.length -1);
+}
+
+function clearAll() {
+    entries.length = 0
+    display.innerHTML = ''
 }
