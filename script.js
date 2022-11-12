@@ -13,16 +13,20 @@ buttons.forEach((buttons) => {
         } else if (ops.includes(buttons.id)) {
             entries.push(display.innerHTML);
             entries.push(buttons.id);
+            console.log(entries.length)
             display.innerHTML = '';    
-        } else if (buttons.id = "clear") {
+        } else if (buttons.id == "clear") {
             display.innerHTML = '';
             entries.length = 0;
-        } else if (buttons.id = "back") {
+        } else if (buttons.id == "back") {
             display.innerHTML.slice(display.innerHTML.lastIndexOf);
-        } else if (buttons.id = ".") {
+        } else if (buttons.id == ".") {
             display.innerHTML.match('.') ? 
             display.innerHTML = "OOPS" : 
             display.innerHTML += buttons.id;
+        } else if (buttons.id == "equals") {
+            entries.push(display.innerHTML)
+            
         }
     })
 })
@@ -58,6 +62,7 @@ function divide(a, b) {
 //answer would become array[0] unless there is a clear
 function operate(a, func, b) {
         let answer = ''
+        display.innerHTML = ''
         switch(a, func, b) {
             case func = 'a':
                 answer = add(a, b);
@@ -71,6 +76,7 @@ function operate(a, func, b) {
             case func = 'm':
                 answer = multiply(a, b);
         }
-        return answer
+        display.innerHTML = answer
+        console.log(answer)
 }
 
