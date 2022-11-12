@@ -6,31 +6,25 @@ const entries = []
 const buttons = document.querySelectorAll('button');
 buttons.forEach((buttons) => {
     buttons.addEventListener ('click', () =>{
-        console.log(buttons.id)
         if (!isNaN(buttons.id)) {
             display.innerHTML += buttons.id;  
         } else if (ops.includes(buttons.id)) {
             entries.push(display.innerHTML);
-            display.innerHTML += buttons.id;
             entries.push(`${buttons.id}`);
-            console.log(entries.length)
             display.innerHTML = '';    
         } else if (buttons.id == "clear") {
             display.innerHTML = '';
             entries.length = 0;
         } else if (buttons.id == "back") {
-            let currentDisplay = display.innerHTML
-            display.innerHTML = currentDisplay.substring(0,currentDisplay.length -1)
+            display.innerHTML = clearDisplay()
         } else if (buttons.id == ".") {
-            display.innerHTML.includes('.') ? display.innerHTML = "OOPS" : display.innerHTML += buttons.id;
+            display.innerHTML.includes('.') ? display.innerHTML = "ERROR!! Too many decimals" : display.innerHTML += buttons.id;
         } else if (buttons.id == "equals") {
             entries.push(display.innerHTML)
-            console.log(entries.length)
             let newDisplay = operate(entries[0], entries[1], entries[2])
-            let currentDisplay = display.innerHTML;
-            display.innerHTML = currentDisplay.substring(0,currentDisplay.length -1)
+            display.innerHTML = clearDisplay()
             display.innerHTML = newDisplay
-            entries.push(newDisplay)
+            entries.length = 0
         }
     })
 })
@@ -41,8 +35,7 @@ buttons.forEach((buttons) => {
 
 
 function add(a, b) {
-    console.log(b)
-    let sum = a + b
+    let sum = parseInt(a) + parseInt(b)
     return sum
 }
 
@@ -67,14 +60,10 @@ function divide(a, b) {
 //answer would become array[0] unless there is a clear
 function operate(x, func, y) {
     let answer = ''
-    console.log(x)
-    console.log(func)
-    console.log (y)
     display.innerHTML = ''
     console.log(typeof func)
     if (func === 'add') {
-        console.log('here')
-        display.innerHTML = `${add(x, y)}`
+        answer = add(x, y)
     } else if (func === 'sub') {
         answer = subtract(x, y)
     } else if (func === 'div') {
@@ -85,4 +74,7 @@ function operate(x, func, y) {
         return answer
 }
 
-console.log(operate(1, 'a', 1))
+function clearDisplay() {
+    let currentDisplay = display.innerHTML;
+    display.innerHTML = currentDisplay.substring(0,currentDisplay.length -1);
+}
